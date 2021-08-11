@@ -187,6 +187,8 @@ output.{{ filebeat_output }}:
   port: {{ elasticsearch.port }}
 {% elif filebeat_output == "logstash" %}
   hosts: ["{{ logstash.host }}:{{ logstash.port }}"]
+{% elif filebeat_output == "kafka" %}
+  {{ kafka | to_nice_yaml }}
 {% endif %}
   bulk_max_size: {{ filebeat_bulk_max_size }}
   worker: {{ filebeat_worker }}
@@ -198,7 +200,7 @@ ssl.enabled: {{ filebeat_ssl_enabled }}
   ssl.key: {{ filebeat_pkey_file }}
   ssl.certificate_authorities: {{ fb_ssl_certificate_authorities }}
 {% endif %}
-  
+
 #-------------------------- Elasticsearch output ------------------------------
 #output.elasticsearch:
   # Array of hosts to connect to.
