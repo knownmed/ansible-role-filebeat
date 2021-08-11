@@ -4,6 +4,10 @@
     {{ fb_input.paths | to_nice_yaml | indent(4, false) }}
   fields:
     {{ fb_input.fields | to_nice_yaml | indent(4, false) }}
+  {% if "json" in fb_input %}
+  json:
+    {{ fb_input.json | to_nice_yaml | index(4, false) }}
+  {% endif %}
 
   ignore_older: {{ filebeat_ignore_older }}
   scan_frequency: {{ filebeat_scan_frequency }}
