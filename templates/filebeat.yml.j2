@@ -188,7 +188,9 @@ output.{{ filebeat_output }}:
 {% elif filebeat_output == "logstash" %}
   hosts: ["{{ logstash.host }}:{{ logstash.port }}"]
 {% elif filebeat_output == "kafka" %}
-{{ kafka | to_nice_yaml | indent(2, false) }}
+{% for key, value in kafka.items() %}
+  {{ key }}: {{ value }}
+{% endfor %}
 {% endif %}
   bulk_max_size: {{ filebeat_bulk_max_size }}
   worker: {{ filebeat_worker }}
