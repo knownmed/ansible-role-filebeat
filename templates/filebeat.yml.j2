@@ -167,7 +167,7 @@ setup.kibana:
 # The cloud.auth setting overwrites the `output.elasticsearch.username` and
 # `output.elasticsearch.password` settings. The format is `<user>:<pass>`.
 
-{% if cloud and "id" in cloud and "auth" in cloud %}
+{% if cloud is defined and "id" in cloud and "auth" in cloud %}
 cloud.id: "{{ cloud.id }}"
 cloud.auth: "{{ cloud.auth }}"
 {% endif %}
