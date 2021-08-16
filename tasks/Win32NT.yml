@@ -62,6 +62,7 @@
     name: '{{ filebeat_service_name }}'
     application: '{{ path.home }}\filebeat.bat'
     state: present
+    executable: C:\/ProgramData\chocolatey\bin\nssm.exe
   notify: Restart filebeat win
 
 - name: Ensure that filebeat path present in 'Path' variable
