@@ -75,3 +75,12 @@
   win_service:
     name: '{{ filebeat_service_name }}'
     state: started
+
+- name: templating default input
+  template:
+    src: 'input.yml.j2'
+    dest: '{{ path.config }}/configs/input-{{ fb_input.name }}.yml'
+  notify: '{{ fb_service_handlers }}'
+  loop: '{{ filebeat_inputs }}'
+  loop_control:
+    loop_var: fb_input
